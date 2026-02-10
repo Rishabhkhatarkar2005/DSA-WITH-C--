@@ -1,25 +1,27 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
+
 int main()
 {
     int n;
     cin >> n;
-    bool ans = true;
+    bool ans = false;
     for (int i = 2; i <= sqrt(n); i++)
     {
         if (n % i == 0)
         {
-            ans = false;
+            ans = true;
             break;
         }
     }
-    if (!ans)
+    if (ans)
     {
-        cout << ("Prime nahi hai");
+        cout << "Is Not Prime";
     }
     else
     {
-        cout << "Prime hai";
+        cout << "Is Prime";
     }
     return 0;
 }
