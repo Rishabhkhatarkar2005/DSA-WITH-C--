@@ -2,38 +2,52 @@
 #include <vector>
 using namespace std;
 
-vector<int> productExceptSelf(vector<int> &nums)
+class Solution
 {
-    int n = nums.size();
-    vector<int> answer(n, 1);
-
-    // Step 1: Left product
-    int left = 1;
-    for (int i = 0; i < n; i++)
+public:
+    vector<int> productExceptSelf(vector<int> &nums)
     {
-        answer[i] = left;
-        left *= nums[i];
-    }
 
-    // Step 2: Right product
-    int right = 1;
-    for (int i = n - 1; i >= 0; i--)
-    {
-        answer[i] *= right;
-        right *= nums[i];
-    }
+        int n = nums.size();
+        vector<int> leftproduct(n, 1);
+        vector<int> rightproduct(n, 1);
+        vector<int> ans(n);
 
-    return answer;
-}
+        // left product
+        for (int i = 1; i < n; i++)
+        {
+            leftproduct[i] = leftproduct[i - 1] * nums[i - 1];
+        }
+
+        // right product
+        for (int i = n - 2; i >= 0; i--)
+        {
+            rightproduct[i] = rightproduct[i + 1] * nums[i + 1];
+        }
+
+        // final answer
+        for (int i = 0; i < n; i++)
+        {
+            ans[i] = leftproduct[i] * rightproduct[i];
+        }
+
+        return ans;
+    }
+};
 
 int main()
 {
+
     vector<int> nums = {1, 2, 3, 4};
 
-    vector<int> result = productExceptSelf(nums);
+    Solution obj;
+    vector<int> result = obj.productExceptSelf(nums);
 
+    cout << "Output: ";
     for (int x : result)
+    {
         cout << x << " ";
+    }
 
     return 0;
 }
