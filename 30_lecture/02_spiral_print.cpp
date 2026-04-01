@@ -9,7 +9,6 @@ int main()
 
     vector<vector<int>> arr(r, vector<int>(c));
 
-    // input
     for (int i = 0; i < r; i++)
     {
         for (int j = 0; j < c; j++)
@@ -21,20 +20,17 @@ int main()
     int left = 0, right = c - 1;
     int top = 0, bottom = r - 1;
 
-    // spiral print
     while (left <= right && top <= bottom)
     {
-        // top row
+
         for (int i = left; i <= right; i++)
             cout << arr[top][i] << " ";
         top++;
 
-        // right column
         for (int i = top; i <= bottom; i++)
             cout << arr[i][right] << " ";
         right--;
 
-        // bottom row
         if (top <= bottom)
         {
             for (int i = right; i >= left; i--)
@@ -42,7 +38,6 @@ int main()
             bottom--;
         }
 
-        // left column
         if (left <= right)
         {
             for (int i = bottom; i >= top; i--)
